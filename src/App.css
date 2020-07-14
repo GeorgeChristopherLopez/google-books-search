@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F6F6F6;
+}
+.App-header {
+  text-align: center;
+  display: grid;
+  grid-row-gap: 1rem;
+ 
+
+  padding: 3rem;
+}
+.App-logo{
+
+
+  font-size: 3rem;
+}
+
+.sub-logo{
+  font-size: 1rem;
+
+}
+.search-bar {
+  width: 50%;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.search-btn{
+  padding: .95rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background-color: #4285F4;
+  color: #fff;
+  cursor: pointer;
+}
+
+.results-section{
+  text-align: center;
+  padding: 3rem;
+}
+
+.books{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+li{
+  list-style: none;
+}
