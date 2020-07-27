@@ -1,13 +1,13 @@
 
 import { Link} from "react-router-dom";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import axios from 'axios';
 
 
 function Header() {
     /* SENSITIVE INFO ***************************************************************************************************************
   remove before uploading */
-  const API_KEY = 'api_key';
+  const API_KEY = 'apikey';
   /***********************************************************************************************************************************/
 
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -46,8 +46,8 @@ function Header() {
   }
     
   return (
-   
-      <header className="App-header">
+ <Fragment>
+   <header className="App-header">
         <h1  className="App-logo" alt="google-logo"><Link to="/">
         Google <span className="sub-logo">Books API</span>
         
@@ -62,21 +62,38 @@ function Header() {
        </div>
     <p>Search the world's most comprehensive index of full-text books.</p>
     <a href="/">My library</a>
- <div> 
- <ul>
+ 
+          </header>
+          <div className="results" style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', textAlign: 'center'}}> 
 
-{results.map(function(item, key) {
-      return <li key={key}>{item.volumeInfo.title}</li>;
-    })}
+
+{    
+    results.length > 0 ?
+    results.map(function(item, key) {
+      let thumnail = (item.volumeInfo.imageLinks) ?  true : false;
+      return <div className="book-card" style={{margin: '0 auto'}}  key={key}>
+        
+    
+        { thumnail ?  <img   src={(item.volumeInfo.imageLinks.thumbnail).toString()}/>: <div style={{border: '1px solid black', height: '100%', width:'100%'}} >`no image available`</div>   }  
+        
+        
+       
+      </div>
+    }) 
+: null
+}
   
 
 
 
-  </ul>
+ 
 
  </div>
 
-          </header>
+
+
+ </Fragment>  
+   
   );
 }
 
