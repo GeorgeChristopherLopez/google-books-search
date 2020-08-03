@@ -11,18 +11,30 @@ import {
 } from "react-router-dom";
 
 
+
 function App() {
+const [results, setResults] = React.useState([]);
+const [book, setBook] = React.useState(null);
+
+function handleSearch(newValue) {
+  setResults(newValue);
+  console.log(newValue);
+}
+function handleBookSelect(newValue) {
+  setBook(newValue);
+ 
+}
   return (
     <div className="App">
     <Router>
-    <Header/>
+    <Header  value={results} onChange={handleSearch}/>
     <Switch>
          
           <Route  exact path="/search">
-            <Results />
+            <Results  results={results} onChange={handleBookSelect}/>
           </Route>
           <Route exact path="/details">
-            <Details />
+            <Details results={book}  />
           </Route>
         </Switch>
     </Router>
