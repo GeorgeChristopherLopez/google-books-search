@@ -61,9 +61,9 @@ function Header(props) {
        <input 
        className="search-bar" 
        type="text"
-       placeholder="Search"
+       placeholder=""
        value={input}
-       onChange={handleChange}/><Link onClick={handleSearch} className="search-btn" to="/search">?</Link>
+       onChange={handleChange}/><Link onClick={handleSearch} className="search-btn" to="/search">Search</Link>
        </div>
     <p>Search the world's most comprehensive index of full-text books.</p>
     <a href="/">My library</a>
