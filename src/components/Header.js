@@ -1,7 +1,8 @@
 
 import { Link} from "react-router-dom";
 import React, { useState, useEffect, useRef, Fragment } from 'react';
-import axios from 'axios';
+import SearchIcon from '@material-ui/icons/Search';
+import { useHistory } from "react-router-dom";
 
 
 function Header(props) {
@@ -9,7 +10,7 @@ function Header(props) {
   remove before uploading */
   const API_KEY = 'api_key';
   /***********************************************************************************************************************************/
-
+  let history = useHistory();
   const [searchTerm, setSearchTerm] = React.useState("");
   const [input, setInput] = React.useState("");
   const [results, setResults] = React.useState([]);
@@ -17,7 +18,7 @@ function Header(props) {
   
   const fetchData =  () => {
 
-      fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}`)
+      fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
       .then(response => response.json())
       .then(responseData => {
         let newResult = responseData.items;
@@ -49,25 +50,31 @@ function Header(props) {
    fetchData();
    
   }
+  const handleKeyPress = (event) => {
+    if(event.key == 'Enter')
+    handleSearch()
+    history.push('/search')
+    
+    
+   }
     
   return (
  
    <header value={props.results} className="App-header">
-        <h1  className="App-logo" alt="google-logo"><Link to="/">
+        <h1  className="App-logo" alt="google-logo"><Link style={{ textDecoration: 'none', color: '#333' }}    to="/">
         Google <span className="sub-logo">Books API</span>
         
         </Link></h1> 
-       <div>
-       <input 
+       <div className="search-bar-container"> 
+       <input autoFocus={true}
+       onKeyPress={handleKeyPress}
        className="search-bar" 
        type="text"
-       placeholder=""
+       placeholder="Search"
        value={input}
-       onChange={handleChange}/><Link onClick={handleSearch} className="search-btn" to="/search">Search</Link>
+       onChange={handleChange}/><Link onClick={handleSearch}  className="search-btn" to="/search"><SearchIcon/></Link>
        </div>
-    <p>Search the world's most comprehensive index of full-text books.</p>
-    <a href="/">My library</a>
- 
+   
           </header>
          
 

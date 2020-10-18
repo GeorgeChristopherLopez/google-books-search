@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Results from './components/Results';
+import HomePageResult from './components/HomePageResults'
 import Details from './components/Details';
 import './App.css';
 import {
@@ -29,7 +30,9 @@ function handleBookSelect(newValue) {
     <Router>
     <Header  value={results} onChange={handleSearch}/>
     <Switch>
-         
+          <Route  exact path="/">
+            <HomePageResult   results={results} onChange={handleBookSelect}/>
+          </Route>
           <Route  exact path="/search">
             <Results  results={results} onChange={handleBookSelect}/>
           </Route>

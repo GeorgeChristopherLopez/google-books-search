@@ -9,7 +9,7 @@ function Results(props) {
     console.log(key);
   }
   return (
-    <div className="results" style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', textAlign: 'center'}}> 
+    <div className="results" > 
    
 
 
@@ -20,7 +20,7 @@ function Results(props) {
         let thumnail = (item.volumeInfo.imageLinks) ?  true : false;
         return <div className="book-card" style={{margin: '0 auto'}}  key={key}>
           <Link to="/details" onClick={()=>handleClick(key)}>  
-          { thumnail ?  <img   src={(item.volumeInfo.imageLinks.thumbnail).toString()}/>: <div style={{border: '1px solid black', height: '100%', width:'100%' }} >NO IMAGE</div>   }  
+          { thumnail ?  <img   src={(item.volumeInfo.imageLinks.thumbnail).toString()}/>: <div style={{border: '1px solid black', height: '100%', width:'100%'}} >`no image available`</div>   }  
           
           </Link>
       
